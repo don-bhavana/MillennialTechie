@@ -40,7 +40,9 @@ Okay so let's head over to the site https://www.worldometers.info/coronavirus/
 
 Let's scrape the table below and get the 10 countries having the most number of cases. Right click on the page and select inspect or if you are using Chrome you can open the developer tools through the menu View —>Developer—> Developer tools. You have to hover on the HTML in the elements tab to see the corresponding element of the page highlight.
 
- Let’s get started with the code. Open up your favourite text editor and import the libraries.
+![Inspect elements Screenshot](/Inspect-screenshot.JPG)
+
+Let’s get started with the code. Open up your favourite text editor and import the libraries.
 
 ```
 import requests
@@ -135,34 +137,8 @@ Now that we are successful in scrapping the site, let’s talk about the latter 
 
 In this article, we are going to dump the scraped data into a csv (comma-separated values) file. We can open any csv file with any spreadsheet application like MS Excel, Google spreadsheets etc. This data can be easily visualised using charts to identify trends, patterns and anomalies. 
 
-```
-import requests
-from bs4 import BeautifulSoup
-import csv
+{{< gist don-bhavana 847dbb65d5e4c48e0223cd8d0eeb587a >}}
 
-URL = 'https://www.worldometers.info/coronavirus/'
-page = requests.get(URL)
-soup = BeautifulSoup(page.content, 'html.parser')
-
-table = soup.find(id='main_table_countries_today')
-
-f = csv.writer(open("covid.csv", "w"))
-f.writerow(["Country","Number of Cases","Number of deaths"])
-
-count=0
-for row in table.find_all('tr')[1:]:  
-	if count <10:
-		name = row.find('a')
-		cases = row.find_all('td')[2].contents
-		deaths = row.findAll('td')[4].contents
-		if None in (name, cases, deaths):
-			continue
-		f.writerow([name.text.strip(),"".join(cases),"".join(deaths)])
-		count+=1
-	else:
-		break
-
-```
 If you notice, we have opened a csv file in write mode. The first row is column labels by default. The writerow method takes only one argument, and hence we pass the list of items.
 
 
