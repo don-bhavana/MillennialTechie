@@ -1,5 +1,5 @@
 ---
-title: "Webscaraping using Beautifulsoup"
+title: "Webscraping using Beautifulsoup"
 date: 2020-05-29T10:07:17+05:30
 ---
 
