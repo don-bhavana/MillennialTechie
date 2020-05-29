@@ -1,7 +1,6 @@
 ---
-title: "Beautifulsoup"
+title: "Webscaraping using Beautifulsoup"
 date: 2020-05-29T10:07:17+05:30
-draft: true
 ---
 
 The data-rich internet is now the ground for a lot of research, and web scraping gives you the leverage to collect the information that suits your needs.
