@@ -27,9 +27,7 @@ Installing beautiful soup and the other required packages is absolutely effortle
 ```
 pip install beautifulsoup4
 pip install requests
-
 ```
-
 
 
 **Inspecting the web source**
@@ -52,7 +50,6 @@ import csv
 URL = 'https://www.worldometers.info/coronavirus/'
 page = requests.get(URL)
 soup = BeautifulSoup(page.content, 'html.parser')
-
 ```
 
  The above few lines of code, firstly it performs a HTTP request and retrieves the HTML of the given url. Then, an object of class beautifulsoup is created that takes the HTML contents. 
@@ -61,7 +58,6 @@ Always search for the id and name attributes, instead of class or styles, in the
 
 ```
 table = soup.find(id='main_table_countries_today')
-
 ```
 
 When we call the find method, the entire HTML vis-à-vis the table with id = main_table_countries_today is in the variable table. You can print out the variable and check it out.
@@ -69,12 +65,10 @@ Now that we have accessed the table, all we need to do is access each row in it.
 
 ```
 for row in table.findAll('tr')[1:]:  
-		country = row.find('a')
-		cases = row.findAll('td')[2].contents
-		deaths = row.findAll('td')[4].contents
-
-		print(country, “—>”, ””.join(cases),"".join(deaths)])
-
+	country = row.find('a')
+	cases = row.findAll('td')[2].contents
+	deaths = row.findAll('td')[4].contents
+	print(country, “—>”, ””.join(cases),"".join(deaths)])
 ```
 
 As you see this code calls the findAll() method which returns an iterable. Now if you observe the HTML, the first tr tag contains the heading for each column. So [1:] makes sure the first row is eliminated.
@@ -82,7 +76,7 @@ As you see this code calls the findAll() method which returns an iterable. Now i
 Using the same old find method to retrieve the name of the country. Notice that the name is differently tagged (using an anchor tag) than the other rows. 
 We are going to parse the entire row and pick the columns we need and append those values in the lists - cases and deaths.
 
->NOTE: If you surf the net, you might find methods like find_all(), which is exactly same as findAll.The camel-cased versions ( findAll , findAllNext , nextSibling , etc.) have all been renamed to conform to the Python style guide, but the old names are still available in beautifulsoup 4 to make porting easier.
+>**NOTE: If you surf the net, you might find methods like find_all(), which is exactly same as findAll.The camel-cased versions ( findAll , findAllNext , nextSibling , etc.) have all been renamed to conform to the Python style guide, but the old names are still available in beautifulsoup 4 to make porting easier.**
 
 
 When you run the code, you’ll see the entire tag of the country being displayed. No worries, beautifulsoup has got you covered!. Use .text to strip off all that mess. Although you might see a lot of unnecessary spaces which you can eliminate using the method .strip().
@@ -90,7 +84,6 @@ When you run the code, you’ll see the entire tag of the country being displaye
 
 
 ```
-
 for row in table.findAll('tr')[1:]:  
 	country = row.find('a')
 	cases = row.findAll('td')[2].contents
@@ -101,7 +94,6 @@ for row in table.findAll('tr')[1:]:
 Well, running this program, might give you an Attribute error - AttributeError: 'NoneType' object has no attribute 'text'. This is because of the None we have encountered previously. Add the below piece of code to overcome that error.
 
 ```
-
 for row in table.findAll('tr')[1:]:  
 	country = row.find('a')
 	cases = row.findAll('td')[2].contents
@@ -109,13 +101,11 @@ for row in table.findAll('tr')[1:]:
 	if None in (name, cases, deaths):
 		continue
 	print(country.text.strip(), “—>”, ””.join(cases),"".join(deaths)])
-
 ```
 
 Let’s add in a condition so as to get only the top ten countries and get rid of that huge amount of data overflowing our terminal. 
 
 ```
-
 count=0
 for row in table.find_all('tr')[1:]:  
 	if count <10:
@@ -128,7 +118,6 @@ for row in table.find_all('tr')[1:]:
 		count+=1
 	else:
 		break
-
 ```
 
 **Writing into a csv file**
