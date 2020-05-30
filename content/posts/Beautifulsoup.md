@@ -137,6 +137,7 @@ Now that we are successful in scrapping the site, let’s talk about the latter 
 
 In this article, we are going to dump the scraped data into a csv (comma-separated values) file. We can open any csv file with any spreadsheet application like MS Excel, Google spreadsheets etc. This data can be easily visualised using charts to identify trends, patterns and anomalies. 
 
+
 {{< gist don-bhavana 847dbb65d5e4c48e0223cd8d0eeb587a >}}
 
 If you notice, we have opened a csv file in write mode. The first row is column labels by default. The writerow method takes only one argument, and hence we pass the list of items.
