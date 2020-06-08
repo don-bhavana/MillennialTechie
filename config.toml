@@ -1,6 +1,6 @@
 baseURL = "https://don-bhavana.github.io/"
 languageCode = "en-us"
-title = "MillennialTechie"
+title = "MT"
 theme = "ananke"
 
 MetaDataFormat = "yaml"
