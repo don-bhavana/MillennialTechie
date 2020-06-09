@@ -1,5 +1,7 @@
 ---
 title: "Webscraping using Beautifulsoup"
+featured_image: "bs-tile.png"
+omit_header_text : true
 date: 2020-05-29T10:07:17+05:30
 ---
 
