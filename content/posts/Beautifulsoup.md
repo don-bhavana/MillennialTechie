@@ -111,10 +111,10 @@ Let’s add in a condition so as to get only the top ten countries and get rid o
 count=0
 for row in table.find_all('tr')[1:]:  
 	if count <10:
-		name = row.find('a')
+		country = row.find('a')
 		cases = row.find_all('td')[2].contents
 		deaths = row.findAll('td')[4].contents
-		if None in (name, cases, deaths):
+		if None in (country, cases, deaths):
 			continue
 		print(country.text.strip(), “—>”, ””.join(cases),"".join(deaths)])
 		count+=1
